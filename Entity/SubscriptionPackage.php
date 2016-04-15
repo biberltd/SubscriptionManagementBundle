@@ -35,39 +35,6 @@ class SubscriptionPackage
      * @ORM\Column(type="text", nullable=false)
      */
     private $type;
-}
-
-/**
- * 
- * 
- */
-class Package extends \BiberLtd\Bundle\CoreBundle\CoreEntity
-{
-    /**
-     * 
-     * 
-     * 
-     * @var int
-     */
-    private $id;
-
-    /**
-     * 
-     * @var string
-     */
-    private $code;
-
-    /**
-     * 
-     * @var float
-     */
-    private $fee;
-
-    /**
-     * 
-     * @var string
-     */
-    private $type;
 
     /**
      * @return int
