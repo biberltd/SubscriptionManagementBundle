@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\Entity
  * @ORM\Table(name="packages", options={"charset":"utf8","collate":"utf8_turkish_ci","engine":"innodb"})
  */
-class Packages
+class Package
 {
     /**
      * @ORM\Id
@@ -25,6 +25,35 @@ class Packages
     private $fee;
 
     /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $type;
+}
+
+/**
+ * 
+ * 
+ */
+class Packages
+{
+    /**
+     * 
+     * 
+     * 
+     */
+    private $id;
+
+    /**
+     * 
+     */
+    private $code;
+
+    /**
+     * 
+     */
+    private $fee;
+
+    /**
      * 
      */
     private $package_code;
@@ -35,7 +64,7 @@ class Packages
     private $package_fee;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * 
      */
     private $type;
 }

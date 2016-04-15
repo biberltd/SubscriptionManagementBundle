@@ -11,17 +11,17 @@
  Target Server Version : 50505
  File Encoding         : utf-8
 
- Date: 04/15/2016 11:44:46 AM
+ Date: 04/15/2016 11:59:26 AM
 */
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
---  Table structure for `packages`
+--  Table structure for `package`
 -- ----------------------------
-DROP TABLE IF EXISTS `packages`;
-CREATE TABLE `packages` (
+DROP TABLE IF EXISTS `package`;
+CREATE TABLE `package` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(11) NOT NULL,
   `fee` decimal(5,2) DEFAULT NULL,
