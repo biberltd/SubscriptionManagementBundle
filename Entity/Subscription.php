@@ -39,7 +39,8 @@ class Subscription extends \BiberLtd\Bundle\CoreBundle\CoreEntity
     private $status;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\ManyToOne(targetEntity="SubscriptionPackage")
+     * @ORM\JoinColumn(name="package", referencedColumnName="id", onDelete="CASCADE")
      */
     private $package;
 
@@ -54,7 +55,12 @@ class Subscription extends \BiberLtd\Bundle\CoreBundle\CoreEntity
     private $payment_status;
 
     /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $remaining_amount;
+
+    /**
+     * 
      */
     private $remain_amount;
 

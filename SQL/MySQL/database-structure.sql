@@ -41,13 +41,15 @@ CREATE TABLE `subscription` (
   `date_end` date DEFAULT NULL,
   `date_cancel` date DEFAULT NULL,
   `status` text CHARACTER SET utf8 NOT NULL,
-  `package` text CHARACTER SET utf8 NOT NULL,
+  `package` int(11) unsigned NULL,
   `promotion` text CHARACTER SET utf8,
   `payment_status` text CHARACTER SET utf8 NOT NULL,
   `remaining_amount` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `member_id` (`member`) USING BTREE,
+  KEY `member` (`member`) USING BTREE,
+  KEY `package` (`package`) USING BTREE,
   CONSTRAINT `idxFMemberOfSubscription` FOREIGN KEY (`member`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `idxFPackageOfSubscription` FOREIGN KEY (`package`) REFERENCES `package` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\Entity
  * @ORM\Table(name="package", options={"charset":"utf8","collate":"utf8_turkish_ci","engine":"innodb"})
  */
-class Package extends \BiberLtd\Bundle\CoreBundle\CoreEntity
+class SubscriptionPackage
 {
     /**
      * @ORM\Id
@@ -35,7 +35,7 @@ class Package extends \BiberLtd\Bundle\CoreBundle\CoreEntity
      * @ORM\Column(type="text", nullable=false)
      */
     private $type;
-
+    
     /**
      * @return mixed
      */
