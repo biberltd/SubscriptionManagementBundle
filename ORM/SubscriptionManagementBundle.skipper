@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<skipper version="3.2.6.1309" mvc="Symfony2" orm="Doctrine2">
+  <module name="\SubscriptionManagementBundle" local-name="SubscriptionManagementBundle" namespace="\" export-format="Doctrine2Php" export-path="../Entity" uuid="78af0820-990d-44ea-85dc-7be6072a5b24">
+    <entity name="\Packages" local-name="Packages" namespace="\" description="Stores package info" uuid="9b3b5a5f-d736-4d01-9326-ae8439866a6d">
+      <field name="id" description="System given id." type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="bab8d3fb-75be-4595-95a1-568784f5ee26"/>
+      <field name="package_code" description="Package code." type="integer" required="true" uuid="c4cefe31-0d02-4434-8c4a-488449cb5ef8"/>
+      <field name="package_fee" description="Package fee." type="decimal" required="true" uuid="be7385cf-03c5-4f6a-b645-9b7436cc0d4d"/>
+      <field name="type" description="Package type. d:daily, m:monthly, w:weekly" type="text" required="true" uuid="371229c0-928a-4db9-b854-87ebac4749a1"/>
+      <orm-attributes>
+        <attribute name="export-file-name">Packages.php</attribute>
+        <attribute name="table">packages</attribute>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\Subscription" local-name="Subscription" namespace="\" description="Stores member account details." uuid="64882e6e-cf75-42ea-a06d-2fea20ef840e">
+      <field name="member_id" description="Member id" type="integer" size="10" required="true" uuid="63b2f695-512d-4a8e-9cda-2944d6d1e5d0"/>
+      <field name="price" description="Subscription price" type="decimal" uuid="5de632e5-0d5e-443d-b09e-586d2d5fb100"/>
+      <field name="date_start" description="Date when the membership is started" type="date" required="true" uuid="9fda5f53-5e55-4e97-a609-411405e03754"/>
+      <field name="date_end" description="Date when the membership is ended" type="date" uuid="779b572f-7574-453d-aec0-f84be792849c"/>
+      <field name="date_cancel" description="Date when the member is canceled" type="date" uuid="c0d314af-c18e-48f1-9887-4ff1c47079e8"/>
+      <field name="status" description="Members status. a:active, i:inactive, c:canceled" type="text" required="true" uuid="bbdcda2a-e904-4da7-a3b8-ffc9ab545d65"/>
+      <field name="package" description="Link packages." type="text" required="true" uuid="0c97ccf3-a0cf-44a1-b3d4-60bc80dd091a"/>
+      <field name="promotion" description="y:yes, n:no" type="text" required="true" uuid="da99f4f9-6d66-47bf-93da-9a1c6b49fba1"/>
+      <field name="payment_status" description="c:complete, i:incomplete" type="text" required="true" uuid="f29bbaba-7543-43a4-afa5-180ac5e995c3"/>
+      <field name="remain_amount" description="c:complete, i:incomplete" type="text" required="true" uuid="7337ef9f-fbf6-4181-8591-6ab9a97bf03e"/>
+      <orm-attributes>
+        <attribute name="export-file-name">Subscription.php</attribute>
+        <attribute name="table">subscription</attribute>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberSubscription" inverse-alias="member" many-owner="true" many-inverse="false" parent-required="true" uuid="7a0259e8-73ec-48dd-ade4-2fa546aeea2b">
+      <association-field from="member_id" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+        <attribute name="on-update">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <orm-attributes>
+      <attribute name="namespace">BiberLtd\Bundle\SubscriptionManagementBundle</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="64882e6e-cf75-42ea-a06d-2fea20ef840e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="206" position-y="59" size-x="0" size-x2="121" size-y="0" size-y2="157"/>
+    <entity uuid="9b3b5a5f-d736-4d01-9326-ae8439866a6d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="56" position-y="58" size-x="0" size-x2="118" size-y="0" size-y2="73"/>
+    <module uuid="78af0820-990d-44ea-85dc-7be6072a5b24" bg-color="#EAE4F1" size-x="0" size-x2="748" size-y="0" size-y2="231"/>
+  </visual-data>
+</skipper>
