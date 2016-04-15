@@ -26,8 +26,8 @@
       <field name="promotion" description="y:yes, n:no" type="text" required="true" uuid="304b6909-f8c3-412d-bd0b-be17b48c7232"/>
       <field name="payment_status" description="c:complete, i:incomplete" type="text" required="true" uuid="e0d67b11-030f-44b1-ac16-5ee9c4c8d2e4"/>
       <field name="remain_amount" description="c:complete, i:incomplete" type="text" required="true" uuid="a4b93484-601e-49b8-a573-0f40bb1b97ca"/>
-      <field name="member" type="integer" size="10" unsigned="true" uuid="7ad3a6eb-e953-48b6-b6e9-b616829d5d53"/>
-      <field name="id" type="bigint" size="20" required="true" primary="true" unsigned="true" auto-increment="true" uuid="7b4325da-b5ff-43ac-b1f0-70dbf5a3b12a"/>
+      <field name="member" description="Member who owns the subscription" type="integer" size="10" required="true" unsigned="true" uuid="7ad3a6eb-e953-48b6-b6e9-b616829d5d53"/>
+      <field name="id" description="System given id." type="bigint" size="20" required="true" primary="true" unsigned="true" auto-increment="true" uuid="7b4325da-b5ff-43ac-b1f0-70dbf5a3b12a"/>
       <orm-attributes>
         <attribute name="export-file-name">Subscription.php</attribute>
         <attribute name="table">subscription</attribute>
@@ -38,7 +38,7 @@
         </attribute>
       </orm-attributes>
     </entity>
-    <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c">
+    <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" parent-required="true" uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c">
       <association-field from="member" to="id"/>
       <orm-attributes>
         <attribute name="on-delete">CASCADE</attribute>
