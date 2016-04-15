@@ -8,6 +8,12 @@ use Doctrine\ORM\Mapping AS ORM;
 class Subscription
 {
     /**
+     * @ORM\Id
+     * @ORM\Column(type="bigint", length=20, options={"unsigned":true})
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
      * @ORM\Column(type="decimal", nullable=true)
      */
     private $price;
@@ -54,7 +60,7 @@ class Subscription
 
     /**
      * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\MemberManagementBundle\Entity\Member")
-     * @ORM\JoinColumn(name="member_id", referencedColumnName="id", nullable=false, onDelete="CASCADE", onUpdate="CASCADE")
+     * @ORM\JoinColumn(name="member", referencedColumnName="id", onDelete="CASCADE")
      */
     private $member;
 }

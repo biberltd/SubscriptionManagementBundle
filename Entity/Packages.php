@@ -17,10 +17,20 @@ class Packages
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    private $package_code;
+    private $code;
 
     /**
      * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $fee;
+
+    /**
+     * 
+     */
+    private $package_code;
+
+    /**
+     * 
      */
     private $package_fee;
 
