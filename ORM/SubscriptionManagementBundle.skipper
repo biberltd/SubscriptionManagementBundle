@@ -7,7 +7,7 @@
       <field name="fee" description="Package fee." type="decimal" required="true" uuid="f31669ac-103e-44ad-8649-020de91d1cbd"/>
       <field name="type" description="Package type. d:daily, m:monthly, w:weekly" type="text" required="true" uuid="815694b4-4e5e-4a03-b8bc-1bb15df07cda"/>
       <orm-attributes>
-        <attribute name="export-file-name">PackagSubscriptione.php</attribute>
+        <attribute name="export-file-name">SubscriptionPackage.php</attribute>
         <attribute name="table">package</attribute>
         <attribute name="options">
           <attribute name="charset">utf8</attribute>
