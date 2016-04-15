@@ -60,7 +60,7 @@ class Subscription
 
     /**
      * @ORM\ManyToOne(targetEntity="BiberLtd\Bundle\MemberManagementBundle\Entity\Member")
-     * @ORM\JoinColumn(name="member", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="member", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $member;
 }

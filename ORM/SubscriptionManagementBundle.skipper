@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <skipper version="3.2.6.1309" mvc="Symfony2" orm="Doctrine2" name="SubscriptionManagementBundle" uuid="c82b9ded-8160-4a50-ac56-522c7477756f">
   <module name="\SubscriptionManagementBundle" local-name="SubscriptionManagementBundle" namespace="\BiberLtd\Bundle\SubscriptionManagementBundle" local-namespace="BiberLtd\Bundle\SubscriptionManagementBundle" export-format="Doctrine2Php" export-path="../../subscription-management-bundle/Entity" uuid="be4635ca-4451-4b44-bd53-f757e958f1d3">
-    <entity name="\Packages" local-name="Packages" namespace="\" local-namespace="\" description="Stores package info" uuid="acf9b5e0-74af-4319-b9ae-d79cf56c2f38">
+    <entity name="\Package" local-name="Package" namespace="\" local-namespace="\" description="Stores package info" uuid="acf9b5e0-74af-4319-b9ae-d79cf56c2f38">
       <field name="id" description="System given id." type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c0596081-98cc-4627-9b30-2b7ede6edccb"/>
       <field name="code" description="Package code." type="integer" required="true" uuid="8bcc7680-255f-472c-811c-969cd073247b"/>
       <field name="fee" description="Package fee." type="decimal" required="true" uuid="f31669ac-103e-44ad-8649-020de91d1cbd"/>
       <field name="type" description="Package type. d:daily, m:monthly, w:weekly" type="text" required="true" uuid="815694b4-4e5e-4a03-b8bc-1bb15df07cda"/>
       <orm-attributes>
-        <attribute name="export-file-name">Packages.php</attribute>
-        <attribute name="table">packages</attribute>
+        <attribute name="export-file-name">Package.php</attribute>
+        <attribute name="table">package</attribute>
         <attribute name="options">
           <attribute name="charset">utf8</attribute>
           <attribute name="collate">utf8_turkish_ci</attribute>
@@ -26,8 +26,8 @@
       <field name="promotion" description="y:yes, n:no" type="text" required="true" uuid="304b6909-f8c3-412d-bd0b-be17b48c7232"/>
       <field name="payment_status" description="c:complete, i:incomplete" type="text" required="true" uuid="e0d67b11-030f-44b1-ac16-5ee9c4c8d2e4"/>
       <field name="remain_amount" description="c:complete, i:incomplete" type="text" required="true" uuid="a4b93484-601e-49b8-a573-0f40bb1b97ca"/>
-      <field name="member" type="integer" size="10" unsigned="true" uuid="7ad3a6eb-e953-48b6-b6e9-b616829d5d53"/>
-      <field name="id" type="bigint" size="20" required="true" primary="true" unsigned="true" auto-increment="true" uuid="7b4325da-b5ff-43ac-b1f0-70dbf5a3b12a"/>
+      <field name="member" description="Member who owns the subscription" type="integer" size="10" required="true" unsigned="true" uuid="7ad3a6eb-e953-48b6-b6e9-b616829d5d53"/>
+      <field name="id" description="System given id." type="bigint" size="20" required="true" primary="true" unsigned="true" auto-increment="true" uuid="7b4325da-b5ff-43ac-b1f0-70dbf5a3b12a"/>
       <orm-attributes>
         <attribute name="export-file-name">Subscription.php</attribute>
         <attribute name="table">subscription</attribute>
@@ -38,7 +38,7 @@
         </attribute>
       </orm-attributes>
     </entity>
-    <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c">
+    <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" parent-required="true" uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c">
       <association-field from="member" to="id"/>
       <orm-attributes>
         <attribute name="on-delete">CASCADE</attribute>
