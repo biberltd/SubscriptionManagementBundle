@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <skipper version="3.2.6.1309" mvc="Symfony2" orm="Doctrine2" name="SubscriptionManagementBundle" uuid="c82b9ded-8160-4a50-ac56-522c7477756f">
   <module name="\SubscriptionManagementBundle" local-name="SubscriptionManagementBundle" namespace="\BiberLtd\Bundle\SubscriptionManagementBundle" local-namespace="BiberLtd\Bundle\SubscriptionManagementBundle" export-format="Doctrine2Php" export-path="../../subscription-management-bundle/Entity" uuid="be4635ca-4451-4b44-bd53-f757e958f1d3">
-    <entity name="\Package" local-name="Package" namespace="\" local-namespace="\" description="Stores package info" uuid="acf9b5e0-74af-4319-b9ae-d79cf56c2f38">
+    <entity name="\SubscriptionPackage" local-name="SubscriptionPackage" namespace="\" local-namespace="\" description="Stores package info" uuid="acf9b5e0-74af-4319-b9ae-d79cf56c2f38">
       <field name="id" description="System given id." type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c0596081-98cc-4627-9b30-2b7ede6edccb"/>
       <field name="code" description="Package code." type="integer" required="true" uuid="8bcc7680-255f-472c-811c-969cd073247b"/>
       <field name="fee" description="Package fee." type="decimal" required="true" uuid="f31669ac-103e-44ad-8649-020de91d1cbd"/>
@@ -22,10 +22,10 @@
       <field name="date_end" description="Date when the membership is ended" type="date" uuid="db50073c-8bb3-486b-9d7b-0081630508f7"/>
       <field name="date_cancel" description="Date when the member is canceled" type="date" uuid="9d7529c0-3523-41c8-9f68-fb30785c0c41"/>
       <field name="status" description="Members status. a:active, i:inactive, c:canceled" type="text" required="true" uuid="0ce4226b-e5ee-429c-b35b-5a4f5e7aac13"/>
-      <field name="package" description="Link packages." type="text" required="true" uuid="6e0dbb44-fa40-4cca-9c1c-da2b1ebc7a3d"/>
+      <field name="package" description="Link packages." type="integer" uuid="6e0dbb44-fa40-4cca-9c1c-da2b1ebc7a3d"/>
       <field name="promotion" description="y:yes, n:no" type="text" required="true" uuid="304b6909-f8c3-412d-bd0b-be17b48c7232"/>
       <field name="payment_status" description="c:complete, i:incomplete" type="text" required="true" uuid="e0d67b11-030f-44b1-ac16-5ee9c4c8d2e4"/>
-      <field name="remain_amount" description="c:complete, i:incomplete" type="text" required="true" uuid="a4b93484-601e-49b8-a573-0f40bb1b97ca"/>
+      <field name="remaining_amount" description="c:complete, i:incomplete" type="decimal" required="true" uuid="a4b93484-601e-49b8-a573-0f40bb1b97ca"/>
       <field name="member" description="Member who owns the subscription" type="integer" size="10" required="true" unsigned="true" uuid="7ad3a6eb-e953-48b6-b6e9-b616829d5d53"/>
       <field name="id" description="System given id." type="bigint" size="20" required="true" primary="true" unsigned="true" auto-increment="true" uuid="7b4325da-b5ff-43ac-b1f0-70dbf5a3b12a"/>
       <orm-attributes>
@@ -40,6 +40,12 @@
     </entity>
     <association from="\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" parent-required="true" uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c">
       <association-field from="member" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <association from="\Subscription" to="\SubscriptionPackage" caption="idxFPackageOfSubscription" inverse-alias="package" many-owner="true" many-inverse="false" uuid="c76a8f6a-a14e-4b57-865c-5b46f099fc2c">
+      <association-field from="package" to="id"/>
       <orm-attributes>
         <attribute name="on-delete">CASCADE</attribute>
       </orm-attributes>
@@ -72,6 +78,7 @@
     <association uuid="b1bb0d0b-841e-42dd-9eb4-9e33e559358b" color="#969696"/>
     <association uuid="b210e152-462a-45f8-b840-75b0217b73c5" color="#969696"/>
     <association uuid="b9e4d241-2e4f-4fbf-a78c-0414234947d6" color="#969696"/>
+    <association uuid="c76a8f6a-a14e-4b57-865c-5b46f099fc2c" color="#969696"/>
     <association uuid="cae1a7cf-6671-458a-b193-f4ace6c4e98c" color="#969696"/>
     <association uuid="d0a6295c-5f68-40e3-bfb4-da2ca6e40fb6" color="#969696"/>
     <association uuid="d120204e-3d7c-47ea-bfe6-c33110876e00" color="#969696"/>
