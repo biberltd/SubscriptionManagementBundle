@@ -1,0 +1,25 @@
+{
+  "name": "biberltd/subscription-management-bundle",
+  "type": "symfony-bundle",
+  "description": "",
+  "keywords": [],
+  "homepage": "http://github.com/biberltd/SubscriptionManagementBundle",
+  "license": "MIT",
+  "version": "master",
+  "authors": [
+    {
+      "name": "Mustafa Yalçın",
+      "email": "mustafa.yalcin@biberltd.com"
+    },
+  ],
+  "require": {
+    "biberltd/core-bundle" : "~3.4",
+    "biberltd/member-management-bundle" : "~3.4",
+  },
+  "autoload": {
+    "psr-0": { "BiberLtd\\Bundle\\SubscriptionManagementBundle": "" }
+
+  },
+  "minimum-stability": "dev",
+  "target-dir": "BiberLtd/Bundle/SubscriptionManagementBundle"
+}
