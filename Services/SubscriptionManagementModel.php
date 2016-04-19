@@ -602,7 +602,7 @@ class SubscriptionManagementModel extends CoreModel{
      * @param array|null $limit
      * @return \BiberLtd\Bundle\CoreBundle\Responses\ModelResponse
      */
-    public function listSubscriptionPackages(array $filter = array() , array $sortOrder = null,array  $limit = null){
+    public function listSubscriptionPackages(array $filter = null , array $sortOrder = null,array  $limit = null){
         $timeStamp = microtime(true);
         if (!is_array($sortOrder) && !is_null($sortOrder)) {
             return $this->createException('InvalidSortOrderException', '$sortOrder must be an array with key => value pairs where value can only be "asc" or "desc".', 'E:S:002');
@@ -625,7 +625,7 @@ class SubscriptionManagementModel extends CoreModel{
             $oStr = ' ORDER BY ' . $oStr . ' ';
         }
 
-        if (!empty($filter)) {
+        if (!is_null($filter)) {
             $fStr = $this->prepareWhere($filter);
             $wStr .= ' WHERE ' . $fStr;
         }
