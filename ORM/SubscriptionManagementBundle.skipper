@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<skipper version="3.2.6.1309" mvc="Symfony2" orm="Doctrine2" name="SubscriptionManagementBundle" uuid="1cd86cea-daee-4d36-955f-d21ebc014f5f">
+  <module name="\SubscriptionManagementBundle" local-name="SubscriptionManagementBundle" namespace="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity" local-namespace="BiberLtd\Bundle\SubscriptionManagementBundle\Entity" export-format="Doctrine2Php" export-path="../Entity" uuid="2afed042-2f18-489f-a1fc-bafd219399b1">
+    <entity name="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity\Subscription" local-name="Subscription" namespace="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity" description="Stores information of subscription." uuid="43844fc9-95f2-4ed2-8b0f-99824654356f">
+      <field name="id" description="System given id." type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="a78040ce-4dcd-47b5-ad73-ff76476a440f"/>
+      <field name="date_added" description="Subscription added date." type="datetime" size="255" uuid="2b97f8c0-0161-4a33-a9a3-8fa3d8365604"/>
+      <field name="date_updated" description="Subscription updated date." type="datetime" uuid="94cee1fd-cc79-45d1-a887-e276c9695030"/>
+      <field name="date_removed" description="Subscription removed date." type="datetime" uuid="3f8adcc6-620f-43f9-b320-7c4753160a94"/>
+      <field name="current_status" description="Subscription status." type="string" uuid="0b85ceed-e43c-4735-85fe-739e26895fdb"/>
+      <field name="current_amount" description="Subscription charge." type="decimal" uuid="8ab00607-65d6-4a91-a98f-968d2e12638e"/>
+      <field name="cycle" description="Subscription cycle." type="string" uuid="a61826a3-2430-4593-8d0a-718d4d9fca85"/>
+      <field name="cycle_start_date" description="Subscription cycle start date." type="datetime" uuid="e22bd7c5-777e-419d-bd30-cf590efbb9f5"/>
+      <field name="cycle_update_date" description="Subscription cycle update date." type="datetime" uuid="0030e357-abc7-4946-ba2f-849a1f8308dd"/>
+      <field name="cycle_next_start_date" description="Subscription cycle next start date." type="datetime" uuid="d6f56d8c-fc9b-4760-85a6-04e9230cecc5"/>
+      <field name="subscription" description="Subscription package." type="integer" uuid="5103d7c1-b869-4e74-9e31-02c35ddb0702"/>
+      <field name="instructions" description="Subscription instructions." type="text" uuid="193d9dcf-9a54-46b9-859f-500aa205ca9c"/>
+      <field name="subscription_date" description="Subscription date." type="datetime" uuid="82d3ecf9-2e2c-4eec-92f3-7b5c28da186f"/>
+      <field name="tracked_member" description="?" type="integer" uuid="9031197d-5330-4beb-bf19-4c9ee7f69967"/>
+      <field name="tracking_confirmation_date" description="?" type="datetime" uuid="e5ac803d-7bd0-468f-8386-bb63c5c644bc"/>
+      <field name="cancellation_date" description="Subscription cancellation date." type="datetime" uuid="7a44dbef-8c04-47c5-9238-09609f3685fe"/>
+      <field name="cancelling_side" description="Subscription cancellation side." type="string" uuid="83285669-35a4-49ce-bdb9-ed30458762ea"/>
+      <field name="cancellation_reason" description="Subscription cancellation reason." type="string" uuid="d3f811ca-37ed-4cdc-92a6-a6a0a924fe7d"/>
+      <field name="alias" description="Subscription alias." type="text" uuid="55218523-aa93-4436-87ce-489240a9b01e"/>
+      <field name="auto_renew" description="ek" type="integer" uuid="0638eada-2181-4fc6-8afc-a3fce9574691"/>
+      <field name="daily_reminder" description="ek" type="integer" uuid="beedb89e-8291-44c8-b635-20b30ee9d051"/>
+      <field name="member" type="integer" size="10" uuid="5a48fc3b-67a6-48cc-9e20-3a6007b09bb2"/>
+      <orm-attributes>
+        <attribute name="table">subscription</attribute>
+        <attribute name="export-file-name">Subscription.php</attribute>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity\Subscription" to="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity\SubscriptionPackage" caption="idxFSubscriptionOfSubscriptionPackage" inverse-alias="subscriptionPackage" many-owner="true" many-inverse="false" uuid="a460d0af-51bd-4694-83da-2cad3a904805">
+      <association-field from="subscription" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <association from="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity\Subscription" to="\BiberLtd\Bundle\MemberManagementBundle\Entity\Member" caption="idxFMemberOfSubscription" inverse-alias="member" many-owner="true" many-inverse="false" uuid="ac7c4cb1-8a98-4d18-94f8-808067c50891">
+      <association-field from="member" to="id"/>
+      <orm-attributes>
+        <attribute name="on-delete">CASCADE</attribute>
+      </orm-attributes>
+    </association>
+    <entity name="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity\SubscriptionPackage" local-name="SubscriptionPackage" namespace="\BiberLtd\Bundle\SubscriptionManagementBundle\Entity" description="Stores information of subscription package." uuid="b1d206d2-2ff0-4db8-bcc6-c9d8a0b33f3a">
+      <field name="id" description="System given id." type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c54d4474-5a03-44fe-b10b-35e2eb7748d9"/>
+      <field name="name" description="Subscription package name." type="text" uuid="88abf449-f01e-4ed9-b87d-7ddbde091536"/>
+      <field name="code" description="Subscription package code." type="text" uuid="e89f879e-9e62-4593-a44b-bf144d962340"/>
+      <field name="subscriber_count" description="Subscriber count of subscription package." type="integer" unsigned="true" uuid="092514ab-38bf-4459-a875-18796f999388"/>
+      <field name="date_added" description="Subscription package added date." type="datetime" uuid="d05f6d2b-d104-419a-b66f-b8297a0acf90"/>
+      <field name="date_updated" description="Subscription package updated date." type="datetime" uuid="e2554116-3e71-432e-a1ee-5c568367fb97"/>
+      <field name="date_removed" description="Subscription package removed date." type="datetime" uuid="83f3ef7a-412c-4b26-b932-8bb04a04d43d"/>
+      <field name="current_price" description="Subscription package current price." type="decimal" uuid="544e5ca6-0938-4726-8879-d0e6506d44e2"/>
+      <field name="price_update_date" description="Subscription package price update date." type="datetime" uuid="fdc52521-00d4-4f22-9f17-ba7a242885d5"/>
+      <field name="last_price" description="Subscription package last price." type="decimal" uuid="63857bfa-cb69-4673-bc32-2e6b74827a8d"/>
+      <field name="query_credit" description="Subscription package total query credit." type="integer" unsigned="true" uuid="678e15c0-8257-43a8-90b9-b5f0da42d941"/>
+      <orm-attributes>
+        <attribute name="table">subscription_package</attribute>
+        <attribute name="export-file-name">SubscriptionPackage.php</attribute>
+        <attribute name="options">
+          <attribute name="charset">utf8</attribute>
+          <attribute name="collate">utf8_turkish_ci</attribute>
+          <attribute name="engine">innodb</attribute>
+        </attribute>
+      </orm-attributes>
+    </entity>
+    <orm-attributes>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <external-module storage-path="../../site-management-bundle/ORM/SiteManagement.module.xml"/>
+  <external-module storage-path="../../multilanguage-support-bundle/ORM/MultiLanguageSupport.module.xml"/>
+  <external-module storage-path="../../file-management-bundle/ORM/FileManagement.module.xml"/>
+  <external-module storage-path="../../member-management-bundle/ORM/MemberManagement.module.xml"/>
+  <visual-data>
+    <association uuid="0132b5a4-c206-4f06-bcf7-08bf61d249f3" color="#969696"/>
+    <association uuid="02e3ef16-39f8-42b5-891d-96224803b169" color="#969696"/>
+    <association uuid="1bc49ece-cade-4d01-b739-aa1d5fe2d1e9" color="#969696"/>
+    <association uuid="45c125cd-0ba3-4a9c-973e-92bbcfb91a59" color="#969696"/>
+    <association uuid="4a21a97e-810e-4e2d-a330-69d23cf801c7" color="#969696"/>
+    <association uuid="5c053399-bdfe-4fd2-b79b-2eebb1c870ef" color="#969696"/>
+    <association uuid="5d9fbbab-e6e7-446b-b35a-5a92b2665907" color="#969696"/>
+    <association uuid="691cd89a-3534-4a4c-bf70-544fa15a4c35" color="#969696"/>
+    <association uuid="71f15a54-6bc9-4510-84b1-2b2817781440" color="#969696"/>
+    <association uuid="804845fb-f53d-4ae3-923e-e8d8a46ebef1" color="#969696"/>
+    <association uuid="93fd6dcc-590e-4490-ad0f-03a9b480fa94" color="#969696"/>
+    <association uuid="98d48d17-f488-4b18-833f-1671af44d614" color="#969696"/>
+    <association uuid="9aa319f9-0057-4338-9baa-01096d251a53" color="#969696"/>
+    <association uuid="a460d0af-51bd-4694-83da-2cad3a904805" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="a50bcd82-290b-4009-b270-6e47a63148cc" color="#969696"/>
+    <association uuid="ac7c4cb1-8a98-4d18-94f8-808067c50891" caption1-position-x="-1171" caption1-position-y="17" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="ae4257ec-40ad-4a53-95bc-43688e025441" color="#969696"/>
+    <association uuid="b1bb0d0b-841e-42dd-9eb4-9e33e559358b" color="#969696"/>
+    <association uuid="b210e152-462a-45f8-b840-75b0217b73c5" color="#969696"/>
+    <association uuid="b9e4d241-2e4f-4fbf-a78c-0414234947d6" color="#969696"/>
+    <association uuid="d0a6295c-5f68-40e3-bfb4-da2ca6e40fb6" color="#969696"/>
+    <association uuid="d120204e-3d7c-47ea-bfe6-c33110876e00" color="#969696"/>
+    <association uuid="dcbf1caf-6474-4dfe-90be-7b58aa71c5c7" color="#969696"/>
+    <association uuid="e615dfba-7f2b-4dac-a61b-519c9538e9f0" color="#969696"/>
+    <association uuid="e759f273-144f-4e29-817a-0fe9f39c4187" color="#969696"/>
+    <entity uuid="43844fc9-95f2-4ed2-8b0f-99824654356f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="359" position-y="35" size-x="0" size-x2="168" size-y="0" size-y2="339"/>
+    <entity uuid="b1d206d2-2ff0-4db8-bcc6-c9d8a0b33f3a" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="20" position-y="42" size-x="0" size-x2="134" size-y="0" size-y2="171"/>
+    <module uuid="264804cf-5ddd-4089-aaa2-d7c0f129a5ed" position-x="1460" position-y="106"/>
+    <module uuid="2afed042-2f18-489f-a1fc-bafd219399b1" bg-color="#E1EDF0" position-x="61" position-y="72" size-x="11" size-x2="709" size-y="22" size-y2="440"/>
+    <module uuid="860bb986-ef71-4cef-9da2-f560e58c2569" position-x="870" position-y="50"/>
+    <module uuid="9d574194-22af-4673-a2ee-bb67ec7d212e" position-x="2286" position-y="51"/>
+    <module uuid="d40aa0eb-3691-4818-880c-0a9ad1dd9833" position-x="3081" position-y="99"/>
+    <project uuid="1cd86cea-daee-4d36-955f-d21ebc014f5f" size-x="0" size-x2="3931" size-y="0" size-y2="708"/>
+  </visual-data>
+</skipper>
