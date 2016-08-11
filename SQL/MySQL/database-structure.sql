@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 --  Table structure for `package`
 -- ----------------------------
-DROP TABLE IF EXISTS `package`;
+DROP TABLE IF EXISTS `subscription_package`;
 CREATE TABLE `package` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(11) NOT NULL,
