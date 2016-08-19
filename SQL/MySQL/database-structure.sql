@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Table structure for `package`
 -- ----------------------------
 DROP TABLE IF EXISTS `subscription_package`;
-CREATE TABLE `package` (
+CREATE TABLE `subscription_package` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(11) NOT NULL,
   `fee` decimal(5,2) DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `subscription` (
   `date_end` date DEFAULT NULL,
   `date_cancel` date DEFAULT NULL,
   `status` text CHARACTER SET utf8 NOT NULL,
-  `package` int(11) unsigned NOT NULL,
+  `package` int(11) NOT NULL,
   `promotion` text CHARACTER SET utf8,
   `payment_status` text CHARACTER SET utf8 NOT NULL,
   `remaining_amount` text CHARACTER SET utf8 NOT NULL,
